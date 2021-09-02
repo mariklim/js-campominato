@@ -34,6 +34,19 @@ function getRndInteger(min, max) {
 // getRndInteger(1, 5)  
 // console.log(randomNumber);
 
+function checkElem(array, element)
+{
+  var trovato = false;
+
+  for (var i = 0; i < array.length; i++)
+  {
+    if (array[i] == element)
+    {
+      trovato = true;
+    }
+  }
+  return trovato;
+}
 
 //PROGRAMMA PRINCIPALE
 // 1. Creo campo
@@ -41,6 +54,7 @@ var camp = 20; //qua ci sara' un numero a base del livello del livello che scegl
 gridCreator(camp);
 
 // 2. Il computer deve generare 5 numeri casuali tra 1 e 20 (bombe)
+// ??I numeri non possono essere duplicati??
 var nBombe = [];
 for (var i = 0; i < 5; i++){
     var numeriRandom = getRndInteger(1, 20);
@@ -48,8 +62,18 @@ for (var i = 0; i < 5; i++){
 }
 console.log(nBombe);
 
+// 3. Evento Click
+document.getElementById("camp").addEventListener("click",
+    function(event){
+        var numeroClicato = event.target.innerHTML;
+        alert(numeroClicato);
+      
+        }
+    }
+)
 
-
+// Voglio verrificare qunado utente clica su un quadrato trova quello con la bomba.
+// checkElem(array, element)
 
 
 
