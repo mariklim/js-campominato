@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ /* Campo*/
+#camp{
+    width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+}
+ .square{
+     width: 100px;
+     height: 100px;
+     background-color: cornflowerblue;
+     border: 1px solid black;
+ }
+
+ .square.clicked{
+     background-color: crimson;
+ }
+
+.square.bomb{
+    background-color: black;
+}
