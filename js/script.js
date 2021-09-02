@@ -21,11 +21,11 @@
 
 // gridCreator crea una griglia e la disegna nel html, ogni "i" è il numero del quadrato.
 
-// function gridCreator(nCell){
-//     for (var i = 1; i <= nCell; i++){
-//         document.getElementById("camp").innerHTML += `<div class="square">${i}</div>`;
-//         } 
-// }
+function gridCreator(nCell){
+    for (var i = 1; i <= nCell; i++){
+        document.getElementById("camp").innerHTML += `<div class="square">${i}</div>`;
+        } 
+}
 
 function getRndInteger(min, max) {
     randomNumber = Math.floor(Math.random() * (max - min + 1) ) + min;
@@ -34,49 +34,36 @@ function getRndInteger(min, max) {
 // getRndInteger(1, 5)  
 // console.log(randomNumber);
 
-// function checkElem(array, element)
-// {
-//   var trovato = false;
-
-//   for (var i = 0; i < array.length; i++)
-//   {
-//     if (array[i] == element)
-//     {
-//       trovato = true;
-//     }
-//   }
-//   return trovato;
-// }
-
 //PROGRAMMA PRINCIPALE
 // 1. Creo campo
-var camp =  []
-for (var i = 1; i <= 20; i++){
-    document.getElementById("camp").innerHTML += `<div class="square">${i}</div>`;
-    camp.push(i);
-    }
-    console.log(camp);
-// gridCreator(camp);
 
-// 2. Il computer deve generare 5 numeri casuali tra 1 e 20 (bombe)
+gridCreator(100);
+
+// 2. // Il computer deve generare 16 numeri casuali tra 1 e 100 (bombe).
 // ??I numeri non possono essere duplicati??
-var nBombe = [4,5,11];
-// for (var i = 0; i < "5; i++){
-//     var numeriRandom = getRndInteger(1, 20);
-//     nBombe.push(numeriRandom);
-// }
+var nBombe = [];
+for (var i = 0; i < 16; i++){
+    var numeriRandom = getRndInteger(1, 20);
+    nBombe.push(numeriRandom);
+}
 console.log(nBombe);
 
 // 3. Evento Click
-var arrNumeriCliccati = [];
-document.getElementById("camp").addEventListener("click",
-    function(event){
-        var numeriCliccati = event.target.innerHTML;
-        if (numeriCliccati !== nBombe[i]){
-            arrNumeriCliccati.push(numeriCliccati);
-            console.log(arrNumeriCliccati);
-        }
-    });
+document.getElementById("camp").addEventListener("click", 
+    function(evento) {
+        var clicked = parseInt(evento.target.innerHTML);
+        if (nBombe.includes(clicked) == true){
+            alert("colpito!");
+            evento.target.classList.add('clicked');
+        } 
+        else { evento.target;
+                alert("vivo!");
+                return evento;
+        }    
+}
+); 
+
+   
 // Voglio verrificare se qunado utente clica su un quadrato trova quello con la
 
 
