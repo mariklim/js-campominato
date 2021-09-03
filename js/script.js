@@ -9,18 +9,9 @@
 // con difficoltà 1 => tra 1 e 80
 // con difficoltà 2 => tra 1 e 50
 
-// 1. Creo una funzione che crea il campo e lo "disegna".
-// 2. Creo una var con (numeri) delle bombe  nel range predefinito, i numeri non si devono ripetere.
-// 3. Creo un evento click, l'utente clicca su una cell e scopre:
-// 3a. Se ha beccato la bomba il gioco si interompe
-// 3b. Altrimenti può continuare a giocare, non può clicare di nuovo la stessa cell
-// 4. Salvo i dati dei click ("non bomba") in una var che serve  per il punteggio.
-// 5. Stampo il resultato (numero totale delle cellule senza bombe che il giocatore ha cliccato)
-
 // FUNZIONI
 
 // gridCreator crea una griglia e la disegna nel html, ogni "i" è il numero del quadrato.
-
 function gridCreator(nCell){
     for (var i = 1; i <= nCell; i++){
         document.getElementById("camp").innerHTML += `<div class="square">${i}</div>`;
@@ -31,37 +22,38 @@ function getRndInteger(min, max) {
     randomNumber = Math.floor(Math.random() * (max - min + 1) ) + min;
     return randomNumber;
   }
-// getRndInteger(1, 5)  
-// console.log(randomNumber);
 
 //PROGRAMMA PRINCIPALE
 // 1. Creo campo
-
 gridCreator(100);
 
 // 2. // Il computer deve generare 16 numeri casuali tra 1 e 100 (bombe).
-// ??I numeri non possono essere duplicati??
+// I numeri non possono essere duplicati
 var nBombe = [];
-for (var i = 0; i < 16; i++){
-    var numeriRandom = getRndInteger(1, 20);
-    nBombe.push(numeriRandom);
+// Con ciclo while array si riempia fino a 16 elementi 
+while (nBombe.length<16){
+    var numeriRandom = getRndInteger(1, 100);
+    if(nBombe.includes(numeriRandom) == false){
+        // senza  "== false" non funziona
+        nBombe.push(numeriRandom);
+    }
 }
 console.log(nBombe);
 
-// 3. Evento Click
-document.getElementById("camp").addEventListener("click", 
-    function(evento) {
-        var clicked = parseInt(evento.target.innerHTML);
-        if (nBombe.includes(clicked) == true){
-            alert("colpito!");
-            evento.target.classList.add('clicked');
-        } 
-        else { evento.target;
-                alert("vivo!");
-                return evento;
-        }    
-}
-); 
+// // 3. Evento Click
+// document.getElementById("camp").addEventListener("click", 
+//     function(evento) {
+//         var clicked = parseInt(evento.target.innerHTML);
+//         if (nBombe.includes(clicked) == true){
+//             alert("colpito!");
+//             evento.target.classList.add('clicked');
+//         } 
+//         else { evento.target;
+//                 alert("vivo!");
+//                 return evento;
+//         }    
+// }
+// ); 
 
    
 // Voglio verrificare se qunado utente clica su un quadrato trova quello con la
