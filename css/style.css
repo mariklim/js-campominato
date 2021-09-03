@@ -21,6 +21,10 @@
      background-color: crimson;
  }
 
+ .square.clicked-save{
+    background-color: green;
+ }
+
 .square.bomb{
     background-color: black;
 }
