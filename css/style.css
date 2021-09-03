@@ -18,7 +18,7 @@ font-family: 'ZCOOL KuaiLe', cursive;
 
 .container h1{
     text-align: center;
-    padding: 40px;
+    margin: 40px;
     font-family: 'Press Start 2P', cursive;
     user-select:none;
 }
@@ -31,11 +31,18 @@ font-family: 'ZCOOL KuaiLe', cursive;
     box-shadow: 2px 2px 15px 3px #693B2B;
     margin: 40px;
 }
+
+
+
  .square{
      width: 100px;
      height: 100px;
-     background-color: cornflowerblue;
-     border: 1px solid black;
+     background-color: rgb(157, 214, 166);
+     border: 2px solid rgb(223, 245, 145);
+     text-align: center;
+     line-height: 100px;
+     font-family: 'Press Start 2P', cursive;
+     color: rgb(31, 53, 53);
  }
 
  .square.clicked{
@@ -49,3 +56,4 @@ font-family: 'ZCOOL KuaiLe', cursive;
 .square.bomb{
     background-color: black;
 }
+

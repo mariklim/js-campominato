@@ -47,18 +47,30 @@ function getRndInteger(min, max) {
 // // con difficoltà 2 => tra 1 e 50
 
 // chido all'utente che livello di difficolta vuole giocare
-var livello = prompt("Scegli livello tra 0, 1 o 2");
+// var livello = prompt("Scegli livello tra 0, 1 o 2");
 var campo;
-console.log(livello);
+// console.log(livello);
 
-if(livello == 0){
-    var campo = 100;
-}else if (livello == 1){
-    var campo = 80;
-}else if (livello == 2){
-    var campo = 50;
-}
+// if(livello == 0){
+//     var campo = 100;
+// }else if (livello == 1){
+//     var campo = 80;
+// }else if (livello == 2){
+//     var campo = 50;
+// }
 
+// Versione con i bottoni
+var livello0 = document.getElementById("liv0");
+var livello1 = document.getElementById("liv1");
+var livello2 = document.getElementById("liv2");
+var refresh = document.getElementById("refresh");
+
+
+livello0.addEventListener("click",
+    function(){
+        
+        }
+        );
 
 // 1a. Creo campo
 gridCreator(campo);
