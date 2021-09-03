@@ -3,12 +3,33 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    background-color: rgb(249, 229, 205);
+}
+/* font-family: 'Press Start 2P', cursive;
+font-family: 'Rampart One', cursive;
+font-family: 'ZCOOL KuaiLe', cursive;
+
+*/
+.container{
+    max-width: 70%;
+    margin: auto;
+}
+
+.container h1{
+    text-align: center;
+    padding: 40px;
+    font-family: 'Press Start 2P', cursive;
+    user-select:none;
+}
 
  /* Campo*/
 #camp{
     width: 1000px;
     display: flex;
     flex-wrap: wrap;
+    box-shadow: 2px 2px 15px 3px #693B2B;
+    margin: 40px;
 }
  .square{
      width: 100px;
