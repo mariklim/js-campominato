@@ -41,8 +41,26 @@ function getRndInteger(min, max) {
 }  
 
 //PROGRAMMA PRINCIPALE
-// 1. Creo campo
-var campo = 100;
+// 1. all’inizio il software richiede anche una difficoltà all’utente che cambia il range di numeri casuali:
+// // con difficoltà 0 => tra 1 e 100
+// // con difficoltà 1 => tra 1 e 80
+// // con difficoltà 2 => tra 1 e 50
+
+// chido all'utente che livello di difficolta vuole giocare
+var livello = prompt("Scegli livello tra 0, 1 o 2");
+var campo;
+console.log(livello);
+
+if(livello == 0){
+    var campo = 100;
+}else if (livello == 1){
+    var campo = 80;
+}else if (livello == 2){
+    var campo = 50;
+}
+
+
+// 1a. Creo campo
 gridCreator(campo);
 
 // 2. // Il computer deve generare 16 numeri casuali tra 1 e 100 (bombe).
@@ -58,7 +76,7 @@ var nBombe = [];
 // Con ciclo while e controllo con .includes() array nBombe si riempia fino a 16 elementi, con FOR si puo' fare ma
 // se ci sono "doppioni" non li mette nell array e quindi c'è probabilità che il numero totale sarà meno di 16!
 while (nBombe.length<bombeDefault){
-    var numeriRandom = getRndInteger(1, 100);
+    var numeriRandom = getRndInteger(1, campo);
     if(nBombe.includes(numeriRandom) == false){
         // senza  "== false o true" non funziona!!!!!
 
