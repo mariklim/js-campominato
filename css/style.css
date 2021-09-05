@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 body{
-    background-color: rgb(249, 229, 205);
+    background-color: rgb(245, 255, 152);
 }
 /* font-family: 'Press Start 2P', cursive;
 font-family: 'Rampart One', cursive;
@@ -32,28 +32,46 @@ font-family: 'ZCOOL KuaiLe', cursive;
     margin: 40px;
 }
 
-
-
  .square{
      width: 100px;
      height: 100px;
-     background-color: rgb(157, 214, 166);
-     border: 2px solid rgb(223, 245, 145);
+     background-color: rgb(210, 255, 173);
+     border: 3px solid rgb(204, 206, 109);
      text-align: center;
      line-height: 100px;
      font-family: 'Press Start 2P', cursive;
-     color: rgb(31, 53, 53);
+     color: rgb(155, 11, 47);
+
  }
 
  .square.clicked{
-     background-color: crimson;
+    background-image: url(../img/sad.png);
+    background-size: cover;
+    color: transparent;
  }
 
  .square.clicked-save{
-    background-color: green;
+    background-image: url(../img/happpy.png);
+    background-size: cover;
+    color: transparent;
  }
-
-.square.bomb{
-    background-color: black;
+.btn{
+    display: flex;
+    justify-content: center;
+    
+}
+button{
+    font-family: 'Press Start 2P', cursive;
+    padding: 8px 15px;
+    font-size: 15px;
+    border-radius: 7px;
+    border: 6px groove #820000;
+    color: rgb(243, 243, 243);
+    text-shadow: rgb(0, 0, 3) 1px 2px;
+    background-color: rgb(187, 12, 56);
+    margin-right: 20px;
 }
 
+button:last-child{
+    margin-right: 0;
+}
