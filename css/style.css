@@ -24,14 +24,16 @@ font-family: 'ZCOOL KuaiLe', cursive;
 }
 
  /* Campo*/
-#camp{
-    width: 1000px;
-    display: flex;
-    flex-wrap: wrap;
-    box-shadow: 2px 2px 15px 3px #693B2B;
-    margin: 40px;
-}
-
+ #camp{
+     width: 1000px;
+     display: flex;
+     flex-wrap: wrap;
+     margin: 40px;
+    }
+    
+            #camp.shadow{
+                box-shadow: 2px 2px 15px 3px #693B2B;
+            }
  .square{
      width: 100px;
      height: 100px;
@@ -45,12 +47,14 @@ font-family: 'ZCOOL KuaiLe', cursive;
  }
 
  .square.clicked{
+    background-color:rgb(255, 0, 0);
     background-image: url(../img/sad.png);
     background-size: cover;
     color: transparent;
  }
 
  .square.clicked-save{
+    background-color:rgb(96, 219, 123);
     background-image: url(../img/happpy.png);
     background-size: cover;
     color: transparent;

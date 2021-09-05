@@ -11,6 +11,8 @@
 
 // FUNZIONI
 
+
+
 // gridCreator crea una griglia e la disegna nel html, ogni "i" è il numero del quadrato.
 function gridCreator(nCell) {
     for (var i = 1; i <= nCell; i++) {
@@ -39,6 +41,11 @@ function inArray(arr, el) {
 
     return false;
 }
+
+function Play_again(){
+    location.reload();
+}
+
 
 //PROGRAMMA PRINCIPALE
 // 1. all’inizio il software richiede anche una difficoltà all’utente che cambia il range di numeri casuali:
@@ -73,6 +80,8 @@ function Livello0() {
 
     for (var i = 1; i <= campo; i++) {
         document.getElementById("camp").innerHTML += `<div class="square">${i}</div>`;
+        document.getElementById("camp").classList.add('clicked');
+        document.getElementById("camp").classList.add('shadow');
     }
 
     // array per salvare delle bombe(numeri)random
@@ -104,6 +113,7 @@ function Livello0() {
             
             if (nBombe.includes(clicked) == true) {
                 // alternativa: if ( inArray(nbombe, clicked) == true ) 
+                evento.target.classList.add('buzz-out-on-hover');
                 evento.target.classList.add('clicked');
                 alert("Colpito! il tuo punteggio: " + numeriConsentiti.length);
                 location.reload();
@@ -114,6 +124,7 @@ function Livello0() {
                 alert("Non puoi cliccare due volte");
             } else {
                 // aggiungo numeri cliccati (senza bomba) nell arr "numeriConsentiti"
+                evento.target.classList.add('buzz-out-on-hover');
                 numeriConsentiti.push(clicked);
                 evento.target.classList.add('clicked-save');
                 console.log(numeriConsentiti);
@@ -168,7 +179,8 @@ function Livello1() {
             // verifichiamo se il numero cliccato è presente nell'array "nBombe" , se presente hai perso! Stampo punteggio.
             
             if (nBombe.includes(clicked) == true) {
-                // alternativa: if ( inArray(nbombe, clicked) == true ) 
+                // alternativa: if ( inArray(nbombe, clicked) == true )
+                evento.target.classList.add('buzz-out-on-hover'); 
                 evento.target.classList.add('clicked');
                 alert("Colpito! il tuo punteggio: " + numeriConsentiti.length);
                 location.reload();
@@ -179,6 +191,7 @@ function Livello1() {
                 alert("Non puoi cliccare due volte");
             } else {
                 // aggiungo numeri cliccati (senza bomba) nell arr "numeriConsentiti"
+                evento.target.classList.add('buzz-out-on-hover');
                 numeriConsentiti.push(clicked);
                 evento.target.classList.add('clicked-save');
                 console.log(numeriConsentiti);
@@ -235,6 +248,7 @@ function Livello2() {
             if (nBombe.includes(clicked) == true) {
                 // alternativa: if ( inArray(nbombe, clicked) == true ) 
                 evento.target.classList.add('clicked');
+                evento.target.classList.add('buzz-out-on-hover');
                 alert("Colpito! il tuo punteggio: " + numeriConsentiti.length);
                 location.reload();
             }
@@ -245,12 +259,13 @@ function Livello2() {
             } else {
                 // aggiungo numeri cliccati (senza bomba) nell arr "numeriConsentiti"
                 numeriConsentiti.push(clicked);
+                evento.target.classList.add('buzz-out-on-hover');
                 evento.target.classList.add('clicked-save');
                 console.log(numeriConsentiti);
 
                 // se il giocatore he cliccato tutti i numeri senza le bombe:
                 if (numeriConsentiti.length == possibilità) {
-                    alert("Bravissimo!! hai finito il gioco!!");
+                    alert("hai finito il gioco!!");
                     location.reload();
                 }
 
@@ -258,11 +273,6 @@ function Livello2() {
         }
     );
 
-
-}
-
-function Play_again(){
-    location.reload();
 
 }
 
