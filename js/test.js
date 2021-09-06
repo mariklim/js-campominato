@@ -115,8 +115,8 @@ function Livello0() {
                 // alternativa: if ( inArray(nbombe, clicked) == true ) 
                 evento.target.classList.add('buzz-out-on-hover');
                 evento.target.classList.add('clicked');
-                alert("Colpito! il tuo punteggio: " + numeriConsentiti.length);
-                location.reload();
+                document.getElementById("messagge").innerHTML = ("Colpito! il tuo punteggio: " + numeriConsentiti.length);
+                document.getElementById("messagge").classList.add('bg');
             }
             // per non far cliccare due volte lo stesso quadratino:
             //se non è colpito allora cerco se nel array "numeriConsentiti" presente il numero già cliccato
@@ -182,8 +182,8 @@ function Livello1() {
                 // alternativa: if ( inArray(nbombe, clicked) == true )
                 evento.target.classList.add('buzz-out-on-hover'); 
                 evento.target.classList.add('clicked');
-                alert("Colpito! il tuo punteggio: " + numeriConsentiti.length);
-                location.reload();
+                document.getElementById("messagge").innerHTML = ("Colpito! il tuo punteggio: " + numeriConsentiti.length);
+                document.getElementById("messagge").classList.add('bg');
             }
             // per non far cliccare due volte lo stesso quadratino:
             //se non è colpito allora cerco se nel array "numeriConsentiti" presente il numero già cliccato
@@ -249,8 +249,9 @@ function Livello2() {
                 // alternativa: if ( inArray(nbombe, clicked) == true ) 
                 evento.target.classList.add('clicked');
                 evento.target.classList.add('buzz-out-on-hover');
-                alert("Colpito! il tuo punteggio: " + numeriConsentiti.length);
-                location.reload();
+                document.getElementById("messagge").innerHTML = ("Colpito! il tuo punteggio: " + numeriConsentiti.length);
+                document.getElementById("messagge").classList.add('bg');
+                // location.reload();
             }
             // per non far cliccare due volte lo stesso quadratino:
             //se non è colpito allora cerco se nel array "numeriConsentiti" presente il numero già cliccato

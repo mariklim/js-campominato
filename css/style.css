@@ -5,6 +5,7 @@
 }
 body{
     background-color: rgb(245, 255, 152);
+    font-family: 'Press Start 2P', cursive;
 }
 /* font-family: 'Press Start 2P', cursive;
 font-family: 'Rampart One', cursive;
@@ -59,6 +60,8 @@ font-family: 'ZCOOL KuaiLe', cursive;
     background-size: cover;
     color: transparent;
  }
+
+ /*Bottoni  */
 .btn{
     display: flex;
     justify-content: center;
@@ -79,3 +82,16 @@ button{
 button:last-child{
     margin-right: 0;
 }
+
+/* Messaggio */
+
+#messagge{
+    text-align: center;
+    padding: 10px;
+    margin: 50px 0;
+}
+
+#messagge.bg{
+    background-color: rgb(230, 60, 236);
+}
+
