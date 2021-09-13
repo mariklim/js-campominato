@@ -11,34 +11,41 @@
 
 // FUNZIONI
 
+
+
 // gridCreator crea una griglia e la disegna nel html, ogni "i" è il numero del quadrato.
-function gridCreator(nCell){
-    for (var i = 1; i <= nCell; i++){
+function gridCreator(nCell) {
+    for (var i = 1; i <= nCell; i++) {
         document.getElementById("camp").innerHTML += `<div class="square">${i}</div>`;
-        } 
+    }
 }
 
 // dato un range di numeri, restituisce un numero random
 function getRndInteger(min, max) {
-    randomNumber = Math.floor(Math.random() * (max - min + 1) ) + min;
+    randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
     return randomNumber;
-  }
+}
 
 // dato l'array e l'elemento da cercare, restitusce true se l'elemento è presente altrimenti false
 // alternativa di arr.includes(elemento)
-  function inArray(arr, el) {
-	var count = 0;
+function inArray(arr, el) {
+    var count = 0;
 
-	while ( count < arr.length ) {
-		if ( arr[count] == el ) {
-			return true;
-		}
-		
-		count++;
-	}
+    while (count < arr.length) {
+        if (arr[count] == el) {
+            return true;
+        }
 
-	return false;
-}  
+        count++;
+    }
+
+    return false;
+}
+
+function Play_again(){
+    location.reload();
+}
+
 
 //PROGRAMMA PRINCIPALE
 // 1. all’inizio il software richiede anche una difficoltà all’utente che cambia il range di numeri casuali:
@@ -46,111 +53,237 @@ function getRndInteger(min, max) {
 // // con difficoltà 1 => tra 1 e 80
 // // con difficoltà 2 => tra 1 e 50
 
-// chido all'utente che livello di difficolta vuole giocare
-var livello = prompt("Scegli livello tra 0, 1 o 2");
-var campo;
-console.log(livello);
+// chido all'utente che livello di difficolta vuole giocare tramite tre bottoni (functionfunction Livello0/Livello1/Livello2)
 
-if(livello == 0){
-    var campo = 100;
-}else if (livello == 1){
-    var campo = 80;
-}else if (livello == 2){
-    var campo = 50;
-}
 
-// 1a. Creo campo
-gridCreator(campo);
-
-// 2. // Il computer deve generare 16 numeri casuali tra 1 e 100 (bombe).
-// I numeri non possono essere duplicati
-
-// creo una array vuota dove salverò le bommbe (numeri random) generati dal pc
-var bombeDefault = 16; 
-// numero totale delle bombe che andiamo a generare
-
+ // numero delle bombe 
+ var bombeDefault = 16;
+ 
+// array per salvare delle bombe(numeri)random
 var nBombe = [];
-// qua salveremo questi numeri generati
+    
+// var per salvare numuri delle cellule della griglia del campo (100, 80 e 50 cell)
+var campo;
 
-// Con ciclo while e controllo con .includes() array nBombe si riempia fino a 16 elementi, con FOR si puo' fare ma
-// se ci sono "doppioni" non li mette nell array e quindi c'è probabilità che il numero totale sarà meno di 16!
-while (nBombe.length<bombeDefault){
-    var numeriRandom = getRndInteger(1, campo);
-    if(nBombe.includes(numeriRandom) == false){
-        // senza  "== false o true" non funziona!!!!!
+// array per i numeri (quadratini) cliccati senza le bombe
+var numeriConsentiti = [];
 
-        // _____________________________________________
-        // in alternativa si può usare la funzione inArray(l'abbiampo creato prima)
-        // if ( inArray(nBombe, numeriRandom) == false
-
-        // cosa fa:
-        // function inArray(nBombe, numeriRandom) {
-        //     var count = 0;
-        
-        //     while ( count < nBombe.length ) {
-        //         if ( nBombe[count] == numeriRandom ) {
-        //             return true;
-        //         }
-                
-        //         count++;
-        //     }
-        
-        //     return false;
-        // }  
-        // ______________________________________________
-
-        nBombe.push(numeriRandom);
-    }
-}
-console.log(nBombe);
-
-// 3. Evento Click
-// In seguito il giocatore clicca sulle celle numerate (non può cliccare più volte sulla stessa cella)
-// La partita termina quando il giocatore clicca su un numero “vietato” o clicca su tutte le celle che non sono delle bombe.
-// Al termine della partita il software deve comunicare il punteggio.
-
-// creo una var per salvare i numeri "consentiti" che cliccerà il giocatore:
+// var per la calcolare se giocatore clicca su tutti cellule senza bombe
 var possibilità = campo - bombeDefault;
-var numeriConsentiti = []; 
 
-document.getElementById("camp").addEventListener("click", 
-    function(evento) {
-    // event.target l'elemnto del dom su cui ho cliccato
-	// mi salvo il numero della casella in var clicked 
+// livello 0, 100 cellule
+function Livello0() {
+    // creazione campo
 
-    var clicked = parseInt(evento.target.innerHTML);
-    // parseInt serve per restituire il tipo del dato numero, altrimenti sarà la stringa
-    // e il controllo "== true" non funzionerà, numero preso da DOM è sempre tipo stringa.
-        
+    // livello 0 avrà 100 cellule della griglia
+    campo = 100;
 
-    // se il numero cliccato è presente nell'array delle bombe, hai perso!allora  stampo il punteggio
-    if (nBombe.includes(clicked) == true){
-    // alternativa: if ( inArray(nbombe, clicked) == true ) 
-            evento.target.classList.add('clicked');
-            alert("Colpito!il tuo punteggio: " + numeriConsentiti.length);
-			location.reload();
-        } 
-        //se non è colpito allora cerco se nel array numeriConsentiti presente il numero già cliccato
-        else if ( inArray(numeriConsentiti, clicked) == true ) {
-			alert("Non puoi cliccare due volte");
-		}else{
-        // aggiungo numeri cliccati (senza bomba) nell arr numeriConsentiti
-        numeriConsentiti.push(clicked);
-        evento.target.classList.add('clicked-save');
-        console.log(numeriConsentiti);
+    for (var i = 1; i <= campo; i++) {
+        document.getElementById("camp").innerHTML += "";
+        document.getElementById("camp").innerHTML += `<div class="square">${i}</div>`;
+        document.getElementById("camp").classList.add('clicked');
+        document.getElementById("camp").classList.add('shadow');
+    }
 
-        if (numeriConsentiti.length == possibilità){
-            alert("Bravissimo!! hai finito il gioco!!");
-            location.reload();
+    // array per salvare delle bombe(numeri)random
+    nBombe = [];
+
+    numeriConsentiti = [];
+
+    // ciclo for per generare i numeri random
+    while (nBombe.length < bombeDefault) {
+        var numeriRandom = getRndInteger(1, campo);
+        // verifichiamo se nell array "nBombe" non ci sono ancora i numeri dal "numeriRandom" allora li pushiamo nel array "nBombe"
+        if (nBombe.includes(numeriRandom) == false) {
+            nBombe.push(numeriRandom);
         }
+    }
 
+
+    document.getElementById("camp").addEventListener("click",
+        function (evento) {
+        // event.target l'elemnto del dom su cui ho cliccato
+        // mi salvo il numero della casella in var "clicked"
+
+            var clicked = parseInt(evento.target.innerHTML);
+            // parseInt serve per restituire il tipo del dato numero, altrimenti sarà la stringa
+            // e il controllo "== true" non funzionerà, numero preso da DOM è sempre tipo stringa.
+
+
+            // verifichiamo se il numero cliccato è presente nell'array "nBombe" , se presente hai perso! Stampo punteggio.
+            
+            if (nBombe.includes(clicked) == true) {
+                // alternativa: if ( inArray(nbombe, clicked) == true ) 
+                evento.target.classList.add('clicked');
+                evento.target.classList.add('buzz-out-on-hover');
+                document.getElementById("messagge").innerHTML = ("Colpito! il tuo punteggio: " + numeriConsentiti.length);
+                document.getElementById("messagge").classList.add('bg');
+                alert("clicca su Gioca Ancora per una nuova partita!")
+               
+            }
+            // per non far cliccare due volte lo stesso quadratino:
+            //se non è colpito allora cerco se nel array "numeriConsentiti" presente il numero già cliccato
+            else if (inArray(numeriConsentiti, clicked) == true) {
+                alert("Non puoi cliccare due volte");
+            } else {
+                // aggiungo numeri cliccati (senza bomba) nell arr "numeriConsentiti"
+                evento.target.classList.add('buzz-out-on-hover');
+                numeriConsentiti.push(clicked);
+                evento.target.classList.add('clicked-save');
+                console.log(numeriConsentiti);
+
+                // se il giocatore he cliccato tutti i numeri senza le bombe:
+                if (numeriConsentiti.length == possibilità) {
+                    alert("Bravissimo!! hai finito il gioco!!");
+                    location.reload();
+                }
+
+            }
         }
+    );
+    // Disattivo bottoni di altri livelli
+    document.getElementById("btn2").disabled = true;
+    document.getElementById("btn3").disabled = true;
 }
-); 
+
+// livello 1, 80 cellule
+function Livello1() {
+    // livello 0 avrà 100 cellule della griglia
+    campo = 80;
+    // creazione campo
+    for (var i = 1; i <= 80; i++) {
+        document.getElementById("camp").innerHTML += `<div class="square">${i}</div>`;
+    }
+
+    // array per salvare delle bombe(numeri)random
+    nBombe = [];
+
+    numeriConsentiti = [];
+
+    // ciclo for per generare i numeri random
+    while (nBombe.length < bombeDefault) {
+        var numeriRandom = getRndInteger(1, campo);
+        // verifichiamo se nell array "nBombe" non ci sono ancora i numeri dal "numeriRandom" allora li pushiamo nel array "nBombe"
+        if (nBombe.includes(numeriRandom) == false) {
+            nBombe.push(numeriRandom);
+        }
+    }
 
 
+    document.getElementById("camp").addEventListener("click",
+        function (evento) {
+        // event.target l'elemnto del dom su cui ho cliccato
+        // mi salvo il numero della casella in var "clicked"
+
+            var clicked = parseInt(evento.target.innerHTML);
+            // parseInt serve per restituire il tipo del dato numero, altrimenti sarà la stringa
+            // e il controllo "== true" non funzionerà, numero preso da DOM è sempre tipo stringa.
 
 
+            // verifichiamo se il numero cliccato è presente nell'array "nBombe" , se presente hai perso! Stampo punteggio.
+            
+            if (nBombe.includes(clicked) == true) {
+                // alternativa: if ( inArray(nbombe, clicked) == true )
+                evento.target.classList.add('buzz-out-on-hover'); 
+                evento.target.classList.add('clicked');
+                document.getElementById("messagge").innerHTML = ("Colpito! il tuo punteggio: " + numeriConsentiti.length);
+                document.getElementById("messagge").classList.add('bg');
+                alert("clicca su Gioca Ancora per una nuova partita!")
+            }
+            // per non far cliccare due volte lo stesso quadratino:
+            //se non è colpito allora cerco se nel array "numeriConsentiti" presente il numero già cliccato
+            else if (inArray(numeriConsentiti, clicked) == true) {
+                alert("Non puoi cliccare due volte");
+            } else {
+                // aggiungo numeri cliccati (senza bomba) nell arr "numeriConsentiti"
+                evento.target.classList.add('buzz-out-on-hover');
+                numeriConsentiti.push(clicked);
+                evento.target.classList.add('clicked-save');
+                console.log(numeriConsentiti);
+
+                // se il giocatore he cliccato tutti i numeri senza le bombe:
+                if (numeriConsentiti.length == possibilità) {
+                    alert("Bravissimo!! hai finito il gioco!!");
+                    location.reload();
+                }
+
+            }
+        }
+    );
+
+// Disattivo bottoni di altri livelli
+document.getElementById("btn1").disabled = true;
+document.getElementById("btn3").disabled = true;
+}
+
+// livello 2, 50 cellule
+function Livello2() {
+    // livello 2 avrà 100 cellule della griglia
+    campo = 50;
+    // creazione campo
+    for (var i = 1; i <= campo; i++) {
+        document.getElementById("camp").innerHTML += `<div class="square">${i}</div>`;
+    }
+
+    // array per salvare delle bombe(numeri)random
+    nBombe = [];
+
+    numeriConsentiti = [];
+
+    // ciclo for per generare i numeri random
+    while (nBombe.length < bombeDefault) {
+        var numeriRandom = getRndInteger(1, campo);
+        // verifichiamo se nell array "nBombe" non ci sono ancora i numeri dal "numeriRandom" allora li pushiamo nel array "nBombe"
+        if (nBombe.includes(numeriRandom) == false) {
+            nBombe.push(numeriRandom);
+        }
+    }
 
 
+    document.getElementById("camp").addEventListener("click",
+        function (evento) {
+        // event.target l'elemnto del dom su cui ho cliccato
+        // mi salvo il numero della casella in var "clicked"
+
+            var clicked = parseInt(evento.target.innerHTML);
+            // parseInt serve per restituire il tipo del dato numero, altrimenti sarà la stringa
+            // e il controllo "== true" non funzionerà, numero preso da DOM è sempre tipo stringa.
+
+
+            // verifichiamo se il numero cliccato è presente nell'array "nBombe" , se presente hai perso! Stampo punteggio.
+            
+            if (nBombe.includes(clicked) == true) {
+                // alternativa: if ( inArray(nbombe, clicked) == true ) 
+                evento.target.classList.add('clicked');
+                evento.target.classList.add('buzz-out-on-hover');
+                document.getElementById("messagge").innerHTML = ("Colpito! il tuo punteggio: " + numeriConsentiti.length);
+                document.getElementById("messagge").classList.add('bg');
+                alert("clicca su Gioca Ancora per una nuova partita!")
+                // location.reload();
+            }
+            // per non far cliccare due volte lo stesso quadratino:
+            //se non è colpito allora cerco se nel array "numeriConsentiti" presente il numero già cliccato
+            else if (inArray(numeriConsentiti, clicked) == true) {
+                alert("Non puoi cliccare due volte");
+            } else {
+                // aggiungo numeri cliccati (senza bomba) nell arr "numeriConsentiti"
+                numeriConsentiti.push(clicked);
+                evento.target.classList.add('buzz-out-on-hover');
+                evento.target.classList.add('clicked-save');
+                console.log(numeriConsentiti);
+
+                // se il giocatore he cliccato tutti i numeri senza le bombe:
+                if (numeriConsentiti.length == possibilità) {
+                    alert("hai finito il gioco!!");
+                    location.reload();
+                }
+
+            }
+        }
+    );
+
+// Disattivo bottoni di altri livelli
+document.getElementById("btn1").disabled = true;
+document.getElementById("btn2").disabled = true;
+}
 
